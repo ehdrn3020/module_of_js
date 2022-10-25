@@ -15,9 +15,14 @@ body {
 }
 .wrapper {
     width: 450px;
+    height: 288px;
     background-color: #fff;
     border-radius: 9px;
-    padding: 30px
+    padding: 30px;
+    transition: height 0.2s ease;
+}
+.wrapper.active {
+    height: 537px ;
 }
 .upload-box {
     display: flex;
@@ -46,7 +51,14 @@ body {
     margin-top: 10px;
 }
 .content {
+    opacity: 0;
+    pointer-events: none;
     margin-top: 25px;
+}
+.wrapper.active .content {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.5s 0.05s ease;
 }
 .row {
     display: flex;
@@ -90,7 +102,7 @@ body {
     padding: 15px;
     background-color: rgb(62, 139, 248);
     color: #fff;
-    /* outline: none; */
+    outline: none;
     border: none;
     border-radius: 5px;
     font-size: 1.1rem;
