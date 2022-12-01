@@ -33,6 +33,7 @@ body {
 }
 .wrapper i:first-child {
     left: -22px;
+    display: none;
 }
 .wrapper i:last-child {
     right: -22px;
@@ -42,13 +43,13 @@ body {
     cursor: pointer;
     overflow: hidden;
     white-space: nowrap;
-    /* scroll-behavior: smooth; */
+    scroll-behavior: smooth;
 }
-.carousel.dragging{
+.carousel .dragging{
     cursor: grab;
     scroll-behavior: auto;
 }
-.carousel.dragging img{
+.carousel .dragging img{
     pointer-events: none;
 }
 .carousel img {
