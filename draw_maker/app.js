@@ -3,21 +3,33 @@ const ctx = canvas.getContext("2d");
 canvas.width = 800;
 canvas.height = 800;
 
-const colors = [
-    "#32ff72",
-    "#7efff5",
-    "#18dcff",
-    "#7d5fff"
-]
+const lineWidth = document.querySelector("#line-width");
+ctx.lineWidth = lineWidth.value;
+let isPainting = false;
 
-function onClick(event) {
+function onMove(event) {
+    if (isPainting) {
+        ctx.lineTo(event.offsetX, event.offsetY);
+        ctx.stroke();
+        return;
+    }
+    ctx.moveTo(event.offsetX, event.offsetY);
+}
+function onMouveDown() {
+    isPainting = true;
+}
+function onMouveUp() {
+    isPainting = false;
     ctx.beginPath();
-    ctx.moveTo(0, 0);
-    const color = colors[Math.floor(Math.random() * colors.length)]
-    ctx.strokeStyle = color;
-    ctx.lineTo(event.offsetX, event.offsetY);
-    ctx.stroke();
+}
+function onLineWidthChange(event) {
+    ctx.lineWidth = event.target.value;
 }
 
-ctx.lineWidth = 2;
-canvas.addEventListener("click", onClick)
+canvas.addEventListener("mousemove", onMove)
+canvas.addEventListener("mousedown", onMouveDown)
+canvas.addEventListener("mouseup", onMouveUp)
+// 마우스가 캔버스를 떠날 때
+canvas.addEventListener("mouseleave", onMouveUp)
+// 선 굵이 변경
+lineWidth.addEventListener("change", onLineWidthChange);
