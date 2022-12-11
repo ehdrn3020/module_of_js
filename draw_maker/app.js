@@ -4,6 +4,8 @@ canvas.width = 800;
 canvas.height = 800;
 
 const lineWidth = document.querySelector("#line-width");
+const color = document.querySelector("#color");
+const colorOptions = document.querySelector(".color-option");
 ctx.lineWidth = lineWidth.value;
 let isPainting = false;
 
@@ -25,6 +27,10 @@ function onMouveUp() {
 function onLineWidthChange(event) {
     ctx.lineWidth = event.target.value;
 }
+function onColorChange(event) {
+    ctx.strokeStyle = event.target.value;
+    ctx.fillStyle = event.target.value;
+}
 
 canvas.addEventListener("mousemove", onMove)
 canvas.addEventListener("mousedown", onMouveDown)
@@ -33,3 +39,5 @@ canvas.addEventListener("mouseup", onMouveUp)
 canvas.addEventListener("mouseleave", onMouveUp)
 // 선 굵이 변경
 lineWidth.addEventListener("change", onLineWidthChange);
+// 색 변경
+color.addEventListener("change", onColorChange);
