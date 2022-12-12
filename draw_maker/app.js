@@ -5,7 +5,7 @@ canvas.height = 800;
 
 const lineWidth = document.querySelector("#line-width");
 const color = document.querySelector("#color");
-const colorOptions = document.querySelector(".color-option");
+const colorOptions = Array.from(document.querySelectorAll(".color-option"));
 ctx.lineWidth = lineWidth.value;
 let isPainting = false;
 
@@ -31,6 +31,13 @@ function onColorChange(event) {
     ctx.strokeStyle = event.target.value;
     ctx.fillStyle = event.target.value;
 }
+function onColorClick(event) {
+    const colorValue = event.target.dataset.color
+    ctx.strokeStyle = colorValue;
+    ctx.fillStyle = colorValue;
+    // input color에 click한 색으로 변경
+    color.value = colorValue;
+}
 
 canvas.addEventListener("mousemove", onMove)
 canvas.addEventListener("mousedown", onMouveDown)
@@ -41,3 +48,5 @@ canvas.addEventListener("mouseleave", onMouveUp)
 lineWidth.addEventListener("change", onLineWidthChange);
 // 색 변경
 color.addEventListener("change", onColorChange);
+// 제시된 파레트 색 변경
+colorOptions.forEach(color=> color.addEventListener("click", onColorClick));
