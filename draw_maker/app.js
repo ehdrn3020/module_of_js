@@ -1,7 +1,9 @@
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
-canvas.width = 800;
-canvas.height = 800;
+const CANVAS_WIDTH = 800;
+const CANVAS_HEIGHT = 800;
+canvas.width = CANVAS_WIDTH;
+canvas.height = CANVAS_HEIGHT;
 let isPainting = false;
 
 const lineWidth = document.querySelector("#line-width");
@@ -11,6 +13,8 @@ ctx.lineWidth = lineWidth.value;
 
 const modeBtn = document.querySelector("#mode-btn");
 let isFilling = false;
+const refeshBtn = document.querySelector("#refresh-btn");
+const eraserBtn = document.querySelector("#eraser-btn");
 
 function onMove(event) {
     if (isPainting) {
@@ -52,8 +56,17 @@ function onModeClick(){
 }
 function onCanvasClick() {
     if(isFilling){
-        ctx.fillRect(0, 0, 800, 800)
+        ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
     }
+}
+function onRefreshClick() {
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+}
+function onEraserClick() {
+    ctx.strokeStyle = "white";
+    isFilling = false;
+    modeBtn.innerText = "Fill";
 }
 
 // 그리기
@@ -72,3 +85,7 @@ color.addEventListener("change", onColorChange);
 colorOptions.forEach(color=> color.addEventListener("click", onColorClick));
 // 선 채우기 
 modeBtn.addEventListener("click", onModeClick);
+// 새로고침
+refeshBtn.addEventListener("click", onRefreshClick);
+// 지우개
+eraserBtn.addEventListener("click", onEraserClick);
