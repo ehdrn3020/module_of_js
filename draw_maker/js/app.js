@@ -15,6 +15,7 @@ const modeBtn = document.querySelector("#mode-btn");
 let isFilling = false;
 const refeshBtn = document.querySelector("#refresh-btn");
 const eraserBtn = document.querySelector("#eraser-btn");
+const saveBtn = document.querySelector("#save-btn");
 
 function onMove(event) {
     if (isPainting) {
@@ -68,6 +69,13 @@ function onEraserClick() {
     isFilling = false;
     modeBtn.innerText = "Fill";
 }
+function onSaveClick() {
+    const url = canvas.toDataURL();
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "myDrawing.png";
+    a.click();
+}
 
 // 그리기
 canvas.addEventListener("mousemove", onMove);
@@ -89,3 +97,5 @@ modeBtn.addEventListener("click", onModeClick);
 refeshBtn.addEventListener("click", onRefreshClick);
 // 지우개
 eraserBtn.addEventListener("click", onEraserClick);
+// 저장
+saveBtn.addEventListener("click", onSaveClick);
