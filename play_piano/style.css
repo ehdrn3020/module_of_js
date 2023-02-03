@@ -20,6 +20,7 @@ body {
     border-radius: 20px;
     padding: 35px 40px;
     background: #141414;
+    margin-bottom: 20px;
 }
 
 .wrapper header {
@@ -122,4 +123,8 @@ header .column span {
     text-align: center;
     width: 100%;
     font-size: 1.2rem;
+}
+
+.hide span{
+    display: none;
 }
